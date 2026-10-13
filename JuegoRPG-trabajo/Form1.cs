@@ -19,6 +19,7 @@ namespace JuegoRPG_trabajo
 
 
 
+
         public Form1()
         {
             InitializeComponent();
