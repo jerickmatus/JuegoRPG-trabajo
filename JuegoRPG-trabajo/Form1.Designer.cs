@@ -52,6 +52,7 @@
             button5 = new Button();
             button6 = new Button();
             button7 = new Button();
+            button8 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -266,11 +267,23 @@
             button7.UseVisualStyleBackColor = true;
             button7.Click += button_mejorarguerrero;
             // 
+            // button8
+            // 
+            button8.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button8.Location = new Point(276, 128);
+            button8.Name = "button8";
+            button8.Size = new Size(68, 46);
+            button8.TabIndex = 23;
+            button8.Text = "posion de vida";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button_posion_vida;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 594);
+            Controls.Add(button8);
             Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(button5);
@@ -328,5 +341,6 @@
         private Button button5;
         private Button button6;
         private Button button7;
+        private Button button8;
     }
 }

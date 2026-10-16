@@ -7,15 +7,11 @@ namespace JuegoRPG_trabajo
     public partial class Form1 : Form
     {
         public int turno = 0;
-        
+
         Random aleatorio = new Random();
-        
-        Personaje guerrero = new Personaje();
-
-        Personaje enemigo = new Personaje();
 
 
-
+        public int pociones = 3;
 
 
 
@@ -32,9 +28,7 @@ namespace JuegoRPG_trabajo
             turno = 0;
 
 
-            Personaje guerrero = new Personaje();
 
-            Personaje enemigo = new Personaje();
 
 
 
@@ -75,7 +69,7 @@ namespace JuegoRPG_trabajo
             if (numero1 < 1 || numero1 > 20)
             {
                 MessageBox.Show("El valor de ataque debe estar entre 1 y 20.");
-                ataqueguerrero.Text = "";
+                ataqueguerrero.Text = "-";
                 return;
             }
 
@@ -126,21 +120,21 @@ namespace JuegoRPG_trabajo
                 turno = 0;
                 return;
             }
-            
-            if (nombreguerrero.Text=="-" && vidaguerrero.Text=="-" && ataqueguerrero.Text=="-")
+
+            if (nombreguerrero.Text == "-" && vidaguerrero.Text == "-" && ataqueguerrero.Text == "-")
             {
                 MessageBox.Show("Por favor, complete todos los campos antes de crear el personaje.");
                 return;
             }
-            
-            
+
+
             if (nombre_enemigo.Text == "-" || vida_enemigo.Text == "-" || ataque_enemigo.Text == "-")
             {
                 MessageBox.Show("Por favor, seleccione un enemigo antes de atacar.");
                 return;
             }
 
-            
+
 
 
             if (turno % 2 == 0 && nombre_enemigo.Text != "-" && nombreguerrero.Text != "-")
@@ -173,7 +167,7 @@ namespace JuegoRPG_trabajo
                 int ataqueEnemigo = Convert.ToInt32(ataque_enemigo.Text);
                 int vidaGuerrero = Convert.ToInt32(vidaguerrero.Text);
                 vidaGuerrero -= ataqueEnemigo;
-                
+
                 vidaguerrero.Text = vidaGuerrero.ToString();
                 turno = 0;
 
@@ -189,15 +183,15 @@ namespace JuegoRPG_trabajo
 
 
 
-                if (vidaguerrero.Text == "0" || vida_enemigo.Text == "0")
+            if (vidaguerrero.Text == "0" || vida_enemigo.Text == "0")
             {
                 MessageBox.Show("El combate ha terminado. No se puede atacar.");
-                turno= 0;   
+                turno = 0;
                 return;
             }
 
 
-            if(turno == 0)
+            if (turno == 0)
             {
                 MessageBox.Show("Es el turno del guerrero. No puedes atacar ahora.");
                 return;
@@ -215,7 +209,7 @@ namespace JuegoRPG_trabajo
         {
 
 
-            if (turno == 0  && vida_enemigo.Text == "0")
+            if (turno == 0 && vida_enemigo.Text == "0")
             {
 
 
@@ -225,7 +219,8 @@ namespace JuegoRPG_trabajo
 
                 int mejora = 10;
 
-                if (opcion >= 2) {
+                if (opcion >= 2)
+                {
 
 
                     int vidaGuerrero = Convert.ToInt32(vidaguerrero.Text);
@@ -240,7 +235,8 @@ namespace JuegoRPG_trabajo
 
                     return;
                 }
-                if (opcion < 2) {
+                if (opcion < 2)
+                {
 
                     int ataqueGuerrero = Convert.ToInt32(ataqueguerrero.Text);
                     ataqueGuerrero = ataqueGuerrero + mejora;
@@ -249,7 +245,7 @@ namespace JuegoRPG_trabajo
 
                     ataqueguerrero.Text = ataqueGuerrero.ToString();
                     turno = 1;
-                    
+
                     return;
                 }
 
@@ -264,6 +260,11 @@ namespace JuegoRPG_trabajo
             }
 
 
+
+        }
+
+        private void button_posion_vida(object sender, EventArgs e)
+        {
 
         }
     }
