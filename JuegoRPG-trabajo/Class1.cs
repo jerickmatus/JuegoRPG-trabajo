@@ -21,10 +21,4 @@ namespace JuegoRPG_trabajo
         }
 
     }
-    
-
-
-
-    
-    
 }

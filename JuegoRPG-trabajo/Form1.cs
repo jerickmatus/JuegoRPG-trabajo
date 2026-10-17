@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using System.Security.Cryptography.X509Certificates;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -11,7 +12,7 @@ namespace JuegoRPG_trabajo
         Random aleatorio = new Random();
 
 
-        public int pociones = 3;
+        public int pocionvida = 5;
 
 
 
@@ -28,7 +29,9 @@ namespace JuegoRPG_trabajo
             turno = 0;
 
 
+            pocionesvida.Text = "5";
 
+            pocionesveneno.Text = "5";
 
 
 
@@ -147,10 +150,10 @@ namespace JuegoRPG_trabajo
                     vidaEnemigo = 0;
                 }
                 vida_enemigo.Text = vidaEnemigo.ToString();
-                turno = 1;
+                turno += 1;
                 return;
             }
-            if (turno == 1)
+            if (turno % 2 == 1)
             {
                 MessageBox.Show("Es el turno del enemigo. No puedes atacar ahora.");
                 return;
@@ -169,7 +172,7 @@ namespace JuegoRPG_trabajo
                 vidaGuerrero -= ataqueEnemigo;
 
                 vidaguerrero.Text = vidaGuerrero.ToString();
-                turno = 0;
+                turno += 1;
 
                 return;
             }
@@ -191,7 +194,7 @@ namespace JuegoRPG_trabajo
             }
 
 
-            if (turno == 0)
+            if (turno % 2 == 0)
             {
                 MessageBox.Show("Es el turno del guerrero. No puedes atacar ahora.");
                 return;
@@ -209,7 +212,7 @@ namespace JuegoRPG_trabajo
         {
 
 
-            if (turno == 0 && vida_enemigo.Text == "0")
+            if (turno % 2 == 0 && vida_enemigo.Text == "0")
             {
 
 
@@ -231,7 +234,7 @@ namespace JuegoRPG_trabajo
 
                     vidaguerrero.Text = vidaGuerrero.ToString();
 
-                    turno = 1;
+                    turno += 1;
 
                     return;
                 }
@@ -244,7 +247,7 @@ namespace JuegoRPG_trabajo
                     MessageBox.Show("Acaba de mejorar tu ataque 10 puntos");
 
                     ataqueguerrero.Text = ataqueGuerrero.ToString();
-                    turno = 1;
+                    turno += 1;
 
                     return;
                 }
@@ -263,8 +266,64 @@ namespace JuegoRPG_trabajo
 
         }
 
-        private void button_posion_vida(object sender, EventArgs e)
+        private void button_pocion_veneno(object sender, EventArgs e)
         {
+
+        }
+
+        private void button_pocion_vida(object sender, EventArgs e)
+        {
+            int curacion = 40;
+
+            int pocionvida = Convert.ToInt32(pocionesvida.Text);
+
+            int vidaGuerrero = Convert.ToInt32(vidaguerrero.Text);
+
+            if (pocionvida == 0)
+            {
+                MessageBox.Show("No tienes más pociones de vida.");
+                return;
+            }
+            if (turno % 2 == 0)
+            {
+               
+                
+                vidaGuerrero = vidaGuerrero + curacion;
+
+                
+                vidaguerrero.Text = vidaGuerrero.ToString();
+                
+                pocionvida = pocionvida - 1;
+                
+                pocionesvida.Text = pocionvida.ToString();
+                
+                turno += 1;
+                
+
+                if (vidaGuerrero + curacion >= 100)
+                {
+                    vidaGuerrero = 100;
+                    vidaguerrero.Text = vidaGuerrero.ToString();
+
+                    turno += 1;
+                    return;
+                }
+
+                return;
+            
+            
+            }
+            else
+            {
+                MessageBox.Show("No Puedes usar la poción de vida ahora.");
+                return;
+            }
+
+
+
+
+
+
 
         }
     }

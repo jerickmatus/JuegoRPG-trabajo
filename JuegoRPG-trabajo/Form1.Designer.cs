@@ -53,6 +53,11 @@
             button6 = new Button();
             button7 = new Button();
             button8 = new Button();
+            label6 = new Label();
+            pocionesvida = new Label();
+            label7 = new Label();
+            pocionesveneno = new Label();
+            button9 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -270,19 +275,70 @@
             // button8
             // 
             button8.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button8.Location = new Point(276, 128);
+            button8.Location = new Point(276, 102);
             button8.Name = "button8";
             button8.Size = new Size(68, 46);
             button8.TabIndex = 23;
             button8.Text = "posion de vida";
             button8.UseVisualStyleBackColor = true;
-            button8.Click += button_posion_vida;
+            button8.Click += button_pocion_vida;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(110, 19);
+            label6.Name = "label6";
+            label6.Size = new Size(124, 20);
+            label6.TabIndex = 24;
+            label6.Text = "posiones de vida:";
+            // 
+            // pocionesvida
+            // 
+            pocionesvida.AutoSize = true;
+            pocionesvida.Location = new Point(238, 19);
+            pocionesvida.Name = "pocionesvida";
+            pocionesvida.Size = new Size(17, 20);
+            pocionesvida.TabIndex = 25;
+            pocionesvida.Text = "0";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(110, 39);
+            label7.Name = "label7";
+            label7.Size = new Size(145, 20);
+            label7.TabIndex = 26;
+            label7.Text = "pociones de veneno:";
+            // 
+            // pocionesveneno
+            // 
+            pocionesveneno.AutoSize = true;
+            pocionesveneno.Location = new Point(261, 39);
+            pocionesveneno.Name = "pocionesveneno";
+            pocionesveneno.Size = new Size(17, 20);
+            pocionesveneno.TabIndex = 27;
+            pocionesveneno.Text = "0";
+            // 
+            // button9
+            // 
+            button9.Location = new Point(276, 154);
+            button9.Name = "button9";
+            button9.Size = new Size(88, 56);
+            button9.TabIndex = 28;
+            button9.Text = "posion de veneno";
+            button9.UseVisualStyleBackColor = true;
+            button9.Click += button_pocion_veneno;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 594);
+            Controls.Add(button9);
+            Controls.Add(pocionesveneno);
+            Controls.Add(label7);
+            Controls.Add(pocionesvida);
+            Controls.Add(label6);
             Controls.Add(button8);
             Controls.Add(button7);
             Controls.Add(button6);
@@ -342,5 +398,10 @@
         private Button button6;
         private Button button7;
         private Button button8;
+        private Label label6;
+        private Label pocionesvida;
+        private Label label7;
+        private Label pocionesveneno;
+        private Button button9;
     }
 }
