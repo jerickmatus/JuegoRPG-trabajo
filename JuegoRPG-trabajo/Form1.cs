@@ -44,31 +44,6 @@ namespace JuegoRPG_trabajo
 
 
 
-
-            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "orco")
-            {
-                dinero += 40;
-
-                cantidaddinero.Text = dinero.ToString();
-                return;
-            }
-            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "goblin")
-            {
-                dinero += 20;
-
-                cantidaddinero.Text = dinero.ToString();
-                return;
-            }
-            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "asesino")
-            {
-                dinero += 60;
-
-                cantidaddinero.Text = dinero.ToString();
-                return;
-            }
-
-
-
         }
 
         private void buttoncrearpersonaje(object sender, EventArgs e)
@@ -124,7 +99,7 @@ namespace JuegoRPG_trabajo
             nombre_enemigo.Text = "orco";
             ataque_enemigo.Text = "14";
             vida_enemigo.Text = "100";
-
+            turno = 0;   
 
         }
 
@@ -133,6 +108,7 @@ namespace JuegoRPG_trabajo
             nombre_enemigo.Text = "goblin";
             ataque_enemigo.Text = "8";
             vida_enemigo.Text = "60";
+            turno =0;   
         }
 
         private void button_asesino(object sender, EventArgs e)
@@ -140,6 +116,7 @@ namespace JuegoRPG_trabajo
             nombre_enemigo.Text = "asesino";
             ataque_enemigo.Text = "20";
             vida_enemigo.Text = "85";
+            turno =0;   
         }
 
         private void button_atacar_guerrero(object sender, EventArgs e)
