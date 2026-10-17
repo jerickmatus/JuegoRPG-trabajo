@@ -29,7 +29,7 @@ namespace JuegoRPG_trabajo.Properties {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources(){
+        internal Resources() {
         }
         
         /// <summary>
@@ -61,12 +61,42 @@ namespace JuegoRPG_trabajo.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap espartano {
+            get {
+                object obj = ResourceManager.GetObject("espartano", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
         internal static byte[] orco {
             get {
                 object obj = ResourceManager.GetObject("orco", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pociondeveneno {
+            get {
+                object obj = ResourceManager.GetObject("pociondeveneno", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pociondevida {
+            get {
+                object obj = ResourceManager.GetObject("pociondevida", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
