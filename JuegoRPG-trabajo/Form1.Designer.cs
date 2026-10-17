@@ -58,6 +58,8 @@
             label7 = new Label();
             pocionesveneno = new Label();
             button9 = new Button();
+            label8 = new Label();
+            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -329,11 +331,31 @@
             button9.UseVisualStyleBackColor = true;
             button9.Click += button_pocion_veneno;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(375, 17);
+            label8.Name = "label8";
+            label8.Size = new Size(52, 20);
+            label8.TabIndex = 29;
+            label8.Text = "dinero";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(390, 39);
+            label9.Name = "label9";
+            label9.Size = new Size(17, 20);
+            label9.TabIndex = 30;
+            label9.Text = "0";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 594);
+            Controls.Add(label9);
+            Controls.Add(label8);
             Controls.Add(button9);
             Controls.Add(pocionesveneno);
             Controls.Add(label7);
@@ -403,5 +425,7 @@
         private Label label7;
         private Label pocionesveneno;
         private Button button9;
+        private Label label8;
+        private Label label9;
     }
 }
