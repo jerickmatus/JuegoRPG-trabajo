@@ -14,7 +14,9 @@ namespace JuegoRPG_trabajo
 
         public int pocionvida = 5;
 
+        public int pocionveneno = 5;
 
+        public int dinero = 50;
 
 
         public Form1()
@@ -29,13 +31,41 @@ namespace JuegoRPG_trabajo
             turno = 0;
 
 
-            pocionesvida.Text = "5";
+            pocionesvida.Text = "3";
 
-            pocionesveneno.Text = "5";
+            pocionesveneno.Text = "3";
+
+            cantidaddinero.Text = "50";
+
+            dinero = Convert.ToInt32(cantidaddinero.Text);
 
 
 
 
+
+
+
+            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "orco")
+            {
+                dinero += 40;
+
+                cantidaddinero.Text = dinero.ToString();
+                return;
+            }
+            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "goblin")
+            {
+                dinero += 20;
+
+                cantidaddinero.Text = dinero.ToString();
+                return;
+            }
+            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "asesino")
+            {
+                dinero += 60;
+
+                cantidaddinero.Text = dinero.ToString();
+                return;
+            }
 
 
 
@@ -92,11 +122,8 @@ namespace JuegoRPG_trabajo
         {
 
             nombre_enemigo.Text = "orco";
-            ataque_enemigo.Text = "9";
+            ataque_enemigo.Text = "14";
             vida_enemigo.Text = "100";
-
-
-
 
 
         }
@@ -104,15 +131,15 @@ namespace JuegoRPG_trabajo
         private void button_goblin(object sender, EventArgs e)
         {
             nombre_enemigo.Text = "goblin";
-            ataque_enemigo.Text = "3";
-            vida_enemigo.Text = "50";
+            ataque_enemigo.Text = "8";
+            vida_enemigo.Text = "60";
         }
 
         private void button_asesino(object sender, EventArgs e)
         {
             nombre_enemigo.Text = "asesino";
-            ataque_enemigo.Text = "12";
-            vida_enemigo.Text = "75";
+            ataque_enemigo.Text = "20";
+            vida_enemigo.Text = "85";
         }
 
         private void button_atacar_guerrero(object sender, EventArgs e)
@@ -159,6 +186,16 @@ namespace JuegoRPG_trabajo
                 return;
             }
 
+
+
+
+
+
+
+
+
+
+            
 
 
         }
@@ -284,23 +321,24 @@ namespace JuegoRPG_trabajo
                 MessageBox.Show("No tienes más pociones de vida.");
                 return;
             }
-            if (turno % 2 == 0)
+            if (turno % 2 == 0 && vidaguerrero.Text != "-")
             {
-               
-                
+
+
                 vidaGuerrero = vidaGuerrero + curacion;
 
-                
-                vidaguerrero.Text = vidaGuerrero.ToString();
-                
-                pocionvida = pocionvida - 1;
-                
-                pocionesvida.Text = pocionvida.ToString();
-                
-                turno += 1;
-                
 
-                if (vidaGuerrero + curacion >= 100)
+                vidaguerrero.Text = vidaGuerrero.ToString();
+
+                pocionvida = pocionvida - 1;
+
+                pocionesvida.Text = pocionvida.ToString();
+
+                turno += 1;
+
+
+
+                if (vidaGuerrero + curacion > 100)
                 {
                     vidaGuerrero = 100;
                     vidaguerrero.Text = vidaGuerrero.ToString();
@@ -309,9 +347,9 @@ namespace JuegoRPG_trabajo
                     return;
                 }
 
+
                 return;
-            
-            
+
             }
             else
             {
@@ -321,6 +359,49 @@ namespace JuegoRPG_trabajo
 
 
 
+
+
+
+
+        }
+
+        private void button_tienda(object sender, EventArgs e)
+        {
+            Form2 ventanatienda = new Form2();
+            ventanatienda.Show();
+        }
+
+        private void button_recompensa(object sender, EventArgs e)
+        {
+            
+            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "orco" && turno % 2 == 0)
+            {
+                dinero += 40;
+
+                cantidaddinero.Text = dinero.ToString();
+                turno += 1;
+                return;
+            }
+            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "goblin" && turno % 2 == 0)
+            {
+                dinero += 20;
+
+                cantidaddinero.Text = dinero.ToString();
+                turno += 1;
+                return;
+            }
+            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "asesino" && turno % 2 == 0)
+            {
+                dinero += 60;
+
+                cantidaddinero.Text = dinero.ToString();
+                turno += 1;
+                return;
+            }
+            else
+            {
+                MessageBox.Show("No puedes reclamar la recompensa ahora.");
+            }
 
 
 

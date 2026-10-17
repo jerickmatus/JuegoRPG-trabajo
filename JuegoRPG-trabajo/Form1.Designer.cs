@@ -59,7 +59,9 @@
             pocionesveneno = new Label();
             button9 = new Button();
             label8 = new Label();
-            label9 = new Label();
+            cantidaddinero = new Label();
+            button10 = new Button();
+            button11 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -200,7 +202,7 @@
             // nombre_enemigo
             // 
             nombre_enemigo.AutoSize = true;
-            nombre_enemigo.Location = new Point(456, 80);
+            nombre_enemigo.Location = new Point(476, 80);
             nombre_enemigo.Name = "nombre_enemigo";
             nombre_enemigo.Size = new Size(15, 20);
             nombre_enemigo.TabIndex = 15;
@@ -209,7 +211,7 @@
             // ataque_enemigo
             // 
             ataque_enemigo.AutoSize = true;
-            ataque_enemigo.Location = new Point(456, 128);
+            ataque_enemigo.Location = new Point(476, 128);
             ataque_enemigo.Name = "ataque_enemigo";
             ataque_enemigo.Size = new Size(15, 20);
             ataque_enemigo.TabIndex = 16;
@@ -218,7 +220,7 @@
             // vida_enemigo
             // 
             vida_enemigo.AutoSize = true;
-            vida_enemigo.Location = new Point(456, 175);
+            vida_enemigo.Location = new Point(476, 172);
             vida_enemigo.Name = "vida_enemigo";
             vida_enemigo.Size = new Size(15, 20);
             vida_enemigo.TabIndex = 17;
@@ -226,9 +228,10 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(145, 80);
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(123, 62);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(125, 138);
+            pictureBox1.Size = new Size(111, 156);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 18;
             pictureBox1.TabStop = false;
@@ -246,9 +249,9 @@
             // 
             // button5
             // 
-            button5.Location = new Point(161, 224);
+            button5.Location = new Point(123, 224);
             button5.Name = "button5";
-            button5.Size = new Size(94, 29);
+            button5.Size = new Size(111, 29);
             button5.TabIndex = 20;
             button5.Text = "atacar";
             button5.UseVisualStyleBackColor = true;
@@ -277,7 +280,7 @@
             // button8
             // 
             button8.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button8.Location = new Point(276, 102);
+            button8.Location = new Point(240, 91);
             button8.Name = "button8";
             button8.Size = new Size(68, 46);
             button8.TabIndex = 23;
@@ -323,7 +326,7 @@
             // 
             // button9
             // 
-            button9.Location = new Point(276, 154);
+            button9.Location = new Point(240, 143);
             button9.Name = "button9";
             button9.Size = new Size(88, 56);
             button9.TabIndex = 28;
@@ -334,27 +337,49 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(375, 17);
+            label8.Location = new Point(335, 361);
             label8.Name = "label8";
             label8.Size = new Size(52, 20);
             label8.TabIndex = 29;
             label8.Text = "dinero";
             // 
-            // label9
+            // cantidaddinero
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(390, 39);
-            label9.Name = "label9";
-            label9.Size = new Size(17, 20);
-            label9.TabIndex = 30;
-            label9.Text = "0";
+            cantidaddinero.AutoSize = true;
+            cantidaddinero.Location = new Point(350, 383);
+            cantidaddinero.Name = "cantidaddinero";
+            cantidaddinero.Size = new Size(17, 20);
+            cantidaddinero.TabIndex = 30;
+            cantidaddinero.Text = "0";
+            // 
+            // button10
+            // 
+            button10.Location = new Point(397, 360);
+            button10.Name = "button10";
+            button10.Size = new Size(94, 29);
+            button10.TabIndex = 31;
+            button10.Text = "tienda";
+            button10.UseVisualStyleBackColor = true;
+            button10.Click += button_tienda;
+            // 
+            // button11
+            // 
+            button11.Location = new Point(575, 45);
+            button11.Name = "button11";
+            button11.Size = new Size(125, 29);
+            button11.TabIndex = 32;
+            button11.Text = "recompensa";
+            button11.UseVisualStyleBackColor = true;
+            button11.Click += button_recompensa;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 594);
-            Controls.Add(label9);
+            Controls.Add(button11);
+            Controls.Add(button10);
+            Controls.Add(cantidaddinero);
             Controls.Add(label8);
             Controls.Add(button9);
             Controls.Add(pocionesveneno);
@@ -426,6 +451,8 @@
         private Label pocionesveneno;
         private Button button9;
         private Label label8;
-        private Label label9;
+        private Label cantidaddinero;
+        private Button button10;
+        private Button button11;
     }
 }
