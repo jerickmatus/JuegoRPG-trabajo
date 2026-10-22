@@ -63,6 +63,16 @@ namespace JuegoRPG_trabajo.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap orco {
+            get {
+                object obj = ResourceManager.GetObject("orco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pociondeveneno {
             get {
                 object obj = ResourceManager.GetObject("pociondeveneno", resourceCulture);
