@@ -7,16 +7,33 @@ namespace JuegoRPG_trabajo
 {
     public partial class Form1 : Form
     {
-        public int turno = 0;
+        Guerrero? jugador;
+        Enemigo? enemigo;
+        bool turnoJugador = true;
+        bool recompensaReclamada = false;
+        bool mejoraUsada = false;
 
         Random aleatorio = new Random();
+        
 
-
-        public int pocionvida = 5;
-
-        public int pocionveneno = 5;
-
-        public int dinero = 50;
+        private void ActualizarPantalla()
+        {
+            if (jugador != null)
+            {
+                nombreguerrero.Text = jugador.Nombre;
+                vidaguerrero.Text = jugador.Vida.ToString();
+                ataqueguerrero.Text = jugador.Ataque.ToString();
+                pocionesvida.Text = jugador.PocionesVida.ToString();
+                pocionesveneno.Text = jugador.PocionesVeneno.ToString();
+                cantidaddinero.Text = jugador.Dinero.ToString();
+            }
+            if (enemigo != null)
+            {
+                nombre_enemigo.Text = enemigo.Nombre;
+                vida_enemigo.Text = enemigo.Vida.ToString();
+                ataque_enemigo.Text = enemigo.Ataque.ToString();
+            }
+        }
 
 
         public Form1()
@@ -28,361 +45,138 @@ namespace JuegoRPG_trabajo
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            turno = 0;
-
-
-            pocionesvida.Text = "3";
-
-            pocionesveneno.Text = "3";
-
-            cantidaddinero.Text = "50";
-
-            dinero = Convert.ToInt32(cantidaddinero.Text);
-
-
-
-
 
 
         }
 
         private void buttoncrearpersonaje(object sender, EventArgs e)
         {
-
-            int numero1 = 0;
-            int numero2 = 0;
-
-
-            numero1 = Convert.ToInt32(textboxAtaque.Text);
-            numero2 = Convert.ToInt32(textboxVida.Text);
-
-
-            nombreguerrero.Text = textboxNombre.Text;
-            ataqueguerrero.Text = textboxAtaque.Text;
-            vidaguerrero.Text = textboxVida.Text;
-
-            if (nombreguerrero.Text == "-" || vidaguerrero.Text == "-" || ataqueguerrero.Text == "-")
+            if (string.IsNullOrWhiteSpace(textboxNombre.Text) ||
+                !int.TryParse(textboxAtaque.Text, out int ataque) ||
+                !int.TryParse(textboxVida.Text, out int vida))
             {
-                MessageBox.Show("Por favor, complete todos los campos antes de crear el personaje.");
+                MessageBox.Show("Por favor, complete todos los campos con valores válidos.");
                 return;
             }
+            if (textboxNombre.Text.Length > 15) { MessageBox.Show("El nombre no puede tener más de 15 caracteres."); return; }
+            if (ataque < 1 || ataque > 20) { MessageBox.Show("El ataque debe estar entre 1 y 20."); return; }
+            if (vida < 1 || vida > 100) { MessageBox.Show("La vida debe estar entre 1 y 100."); return; }
 
-            if (textboxNombre.Text.Length > 15)
-            {
-                MessageBox.Show("El nombre del personaje no puede tener más de 15 caracteres.");
-                nombreguerrero.Text = "";
-                return;
-            }
-
-            if (numero1 < 1 || numero1 > 20)
-            {
-                MessageBox.Show("El valor de ataque debe estar entre 1 y 20.");
-                ataqueguerrero.Text = "-";
-                return;
-            }
-
-            if (numero2 < 1 || numero2 > 100)
-            {
-                MessageBox.Show("El valor de vida debe estar entre 1 y 100.");
-                vidaguerrero.Text = "";
-                return;
-            }
-
-
-
-
+            jugador = new Guerrero(textboxNombre.Text, vida, ataque);
+            ActualizarPantalla();
         }
 
-        private void button_orco(object sender, EventArgs e)
+        private void button_orco(object sender, EventArgs e) => NuevoEnemigo(new Enemigo("orco", 100, 14, 40));
+        private void button_goblin(object sender, EventArgs e) => NuevoEnemigo(new Enemigo("goblin", 60, 8, 20));
+        private void button_asesino(object sender, EventArgs e) => NuevoEnemigo(new Enemigo("asesino", 85, 20, 60));
+
+        private void NuevoEnemigo(Enemigo nuevo)
         {
+            enemigo = nuevo;
+            turnoJugador = true;
+            recompensaReclamada = false;
+            ActualizarPantalla();
 
-            nombre_enemigo.Text = "orco";
-            ataque_enemigo.Text = "14";
-            vida_enemigo.Text = "100";
-            turno = 0;   
-
+            bool mejoraUsada = false;
         }
 
-        private void button_goblin(object sender, EventArgs e)
+        private bool CombateListo()
         {
-            nombre_enemigo.Text = "goblin";
-            ataque_enemigo.Text = "8";
-            vida_enemigo.Text = "60";
-            turno =0;   
-        }
-
-        private void button_asesino(object sender, EventArgs e)
-        {
-            nombre_enemigo.Text = "asesino";
-            ataque_enemigo.Text = "20";
-            vida_enemigo.Text = "85";
-            turno =0;   
+            if (jugador == null) { MessageBox.Show("Primero crea tu personaje."); return false; }
+            if (enemigo == null) { MessageBox.Show("Primero selecciona un enemigo."); return false; }
+            if (!jugador.EstaVivo || !enemigo.EstaVivo) { MessageBox.Show("El combate ha terminado."); return false; }
+            return true;
         }
 
         private void button_atacar_guerrero(object sender, EventArgs e)
         {
-            if (vidaguerrero.Text == "0" || vida_enemigo.Text == "0")
-            {
-                MessageBox.Show("El combate ha terminado. No se puede atacar.");
-                turno = 0;
-                return;
-            }
+            if (!CombateListo()) return;
+            if (!turnoJugador) { MessageBox.Show("Es el turno del enemigo."); return; }
 
-            if (nombreguerrero.Text == "-" && vidaguerrero.Text == "-" && ataqueguerrero.Text == "-")
-            {
-                MessageBox.Show("Por favor, complete todos los campos antes de crear el personaje.");
-                return;
-            }
-
-
-            if (nombre_enemigo.Text == "-" || vida_enemigo.Text == "-" || ataque_enemigo.Text == "-")
-            {
-                MessageBox.Show("Por favor, seleccione un enemigo antes de atacar.");
-                return;
-            }
-
-
-
-
-            if (turno % 2 == 0 && nombre_enemigo.Text != "-" && nombreguerrero.Text != "-")
-            {
-                int vidaEnemigo = Convert.ToInt32(vida_enemigo.Text);
-                int ataqueGuerrero = Convert.ToInt32(ataqueguerrero.Text);
-                vidaEnemigo -= ataqueGuerrero;
-                if (vidaEnemigo < 0)
-                {
-                    vidaEnemigo = 0;
-                }
-                vida_enemigo.Text = vidaEnemigo.ToString();
-                turno += 1;
-                return;
-            }
-            if (turno % 2 == 1)
-            {
-                MessageBox.Show("Es el turno del enemigo. No puedes atacar ahora.");
-                return;
-            }
-
-
-
-
-
-
-
-
-
-
-            
-
-
+            enemigo!.RecibirDanio(jugador!.Atacar());
+            turnoJugador = false;
+            ActualizarPantalla();
         }
 
         private void button_atacar_enemigo(object sender, EventArgs e)
         {
-            if (turno % 2 == 1 && vida_enemigo.Text != "0")
+            if (!CombateListo()) return;
+            if (turnoJugador) { MessageBox.Show("Es el turno del guerrero."); return; }
+
+            if (enemigo!.TurnosVeneno > 0)
             {
-                int ataqueEnemigo = Convert.ToInt32(ataque_enemigo.Text);
-                int vidaGuerrero = Convert.ToInt32(vidaguerrero.Text);
-                vidaGuerrero -= ataqueEnemigo;
-
-                vidaguerrero.Text = vidaGuerrero.ToString();
-                turno += 1;
-
-                return;
-            }
-
-            if (nombre_enemigo.Text == "-" && vida_enemigo.Text == "-" && ataque_enemigo.Text == "-")
-            {
-                MessageBox.Show("Por favor, seleccione un enemigo antes de atacar.");
-                return;
-            }
-
-
-
-
-            if (vidaguerrero.Text == "0" || vida_enemigo.Text == "0")
-            {
-                MessageBox.Show("El combate ha terminado. No se puede atacar.");
-                turno = 0;
-                return;
-            }
-
-
-            if (turno % 2 == 0)
-            {
-                MessageBox.Show("Es el turno del guerrero. No puedes atacar ahora.");
-                return;
-            }
-
-
-
-
-
-
-
-        }
-
-        private void button_mejorarguerrero(object sender, EventArgs e)
-        {
-
-
-            if (turno % 2 == 0 && vida_enemigo.Text == "0")
-            {
-
-
-
-                int opcion = aleatorio.Next(1, 4);
-
-
-                int mejora = 10;
-
-                if (opcion >= 2)
+                enemigo.RecibirDanio(5);
+                enemigo.TurnosVeneno--;
+                if (!enemigo.EstaVivo)
                 {
-
-
-                    int vidaGuerrero = Convert.ToInt32(vidaguerrero.Text);
-
-                    vidaGuerrero = vidaGuerrero + mejora;
-
-                    MessageBox.Show("Acaba de mejorar tu vida 10 puntos");
-
-                    vidaguerrero.Text = vidaGuerrero.ToString();
-
-                    turno += 1;
-
+                    turnoJugador = true;
+                    ActualizarPantalla();
+                    MessageBox.Show("¡El veneno derrotó al enemigo!");
                     return;
                 }
-                if (opcion < 2)
-                {
-
-                    int ataqueGuerrero = Convert.ToInt32(ataqueguerrero.Text);
-                    ataqueGuerrero = ataqueGuerrero + mejora;
-
-                    MessageBox.Show("Acaba de mejorar tu ataque 10 puntos");
-
-                    ataqueguerrero.Text = ataqueGuerrero.ToString();
-                    turno += 1;
-
-                    return;
-                }
-
-                return;
-
-
-            }
-            else
-            {
-                MessageBox.Show("No puedes mejorar el guerrero ahora.");
-                return;
             }
 
-
-
-        }
-
-        private void button_pocion_veneno(object sender, EventArgs e)
-        {
-
+            jugador!.RecibirDanio(enemigo.Atacar());
+            turnoJugador = true;
+            ActualizarPantalla();
         }
 
         private void button_pocion_vida(object sender, EventArgs e)
         {
-            int curacion = 40;
+            if (jugador == null) { MessageBox.Show("Primero crea tu personaje."); return; }
+            if (!turnoJugador) { MessageBox.Show("No puedes usar la poción ahora."); return; }
+            if (jugador.PocionesVida == 0) { MessageBox.Show("No tienes más pociones de vida."); return; }
 
-            int pocionvida = Convert.ToInt32(pocionesvida.Text);
+            jugador.PocionesVida--;
+            jugador.Curar(40);
+            turnoJugador = false;
+            ActualizarPantalla();
+        }
+        private void button_pocion_veneno(object sender, EventArgs e)
+        {
+            if (!CombateListo()) return;
+            if (!turnoJugador) { MessageBox.Show("No puedes usar la poción ahora."); return; }
+            if (jugador!.PocionesVeneno == 0) { MessageBox.Show("No tienes más pociones de veneno."); return; }
 
-            int vidaGuerrero = Convert.ToInt32(vidaguerrero.Text);
-
-            if (pocionvida == 0)
+            jugador.PocionesVeneno--;
+            enemigo!.TurnosVeneno = 3;      // el veneno dura 3 turnos del enemigo
+            turnoJugador = false;
+            ActualizarPantalla();
+        }
+        private void button_recompensa(object sender, EventArgs e)
+        {
+            if (jugador == null || enemigo == null || enemigo.EstaVivo || recompensaReclamada)
             {
-                MessageBox.Show("No tienes más pociones de vida.");
+                MessageBox.Show("No puedes reclamar la recompensa ahora.");
                 return;
             }
-            if (turno % 2 == 0 && vidaguerrero.Text != "-")
-            {
-
-
-                vidaGuerrero = vidaGuerrero + curacion;
-
-
-                vidaguerrero.Text = vidaGuerrero.ToString();
-
-                pocionvida = pocionvida - 1;
-
-                pocionesvida.Text = pocionvida.ToString();
-
-                turno += 1;
-
-
-
-                if (vidaGuerrero + curacion > 100)
-                {
-                    vidaGuerrero = 100;
-                    vidaguerrero.Text = vidaGuerrero.ToString();
-
-                    turno += 1;
-                    return;
-                }
-
-
-                return;
-
-            }
-            else
-            {
-                MessageBox.Show("No Puedes usar la poción de vida ahora.");
-                return;
-            }
-
-
-
-
-
-
-
+            jugador.Dinero += enemigo.Recompensa;
+            recompensaReclamada = true;
+            ActualizarPantalla();
         }
 
         private void button_tienda(object sender, EventArgs e)
         {
-            Form2 ventanatienda = new Form2();
-            ventanatienda.Show();
-        }
+            if (jugador == null) { MessageBox.Show("Primero crea tu personaje."); return; }
 
-        private void button_recompensa(object sender, EventArgs e)
-        {
+            var tienda = new Form2(jugador);          
+            tienda.CompraRealizada += ActualizarPantalla;  
             
-            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "orco" && turno % 2 == 0)
-            {
-                dinero += 40;
-
-                cantidaddinero.Text = dinero.ToString();
-                turno += 1;
-                return;
-            }
-            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "goblin" && turno % 2 == 0)
-            {
-                dinero += 20;
-
-                cantidaddinero.Text = dinero.ToString();
-                turno += 1;
-                return;
-            }
-            if (vida_enemigo.Text == "0" && nombre_enemigo.Text == "asesino" && turno % 2 == 0)
-            {
-                dinero += 60;
-
-                cantidaddinero.Text = dinero.ToString();
-                turno += 1;
-                return;
-            }
-            else
-            {
-                MessageBox.Show("No puedes reclamar la recompensa ahora.");
-            }
-
-
-
-
+            tienda.Show();
         }
-    }
-}
+        private void button_mejorarguerrero(object sender, EventArgs e)
+        {
+            if (jugador == null || enemigo == null || enemigo.EstaVivo || mejoraUsada)
+            {
+                MessageBox.Show("No puedes mejorar el guerrero ahora.");
+                return;
+            }
+            
+            MessageBox.Show(jugador.Mejorar(aleatorio));
+            
+            mejoraUsada = true;
+            
+            ActualizarPantalla();
+        }
+    }   
+}       

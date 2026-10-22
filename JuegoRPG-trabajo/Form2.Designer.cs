@@ -89,6 +89,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Image = Properties.Resources.pociondevida;
             pictureBox1.Location = new Point(69, 123);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(163, 195);
@@ -98,6 +99,7 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.Image = Properties.Resources.pociondeveneno;
             pictureBox2.Location = new Point(554, 123);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(152, 195);

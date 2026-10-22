@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             textboxNombre = new TextBox();
             label1 = new Label();
             label2 = new Label();
@@ -228,7 +227,6 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.espartano;
             pictureBox1.Location = new Point(123, 62);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(111, 156);
@@ -239,7 +237,6 @@
             // pictureBox2
             // 
             pictureBox2.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(575, 80);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(125, 138);
