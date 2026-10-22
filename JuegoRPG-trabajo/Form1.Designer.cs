@@ -61,6 +61,7 @@
             cantidaddinero = new Label();
             button10 = new Button();
             button11 = new Button();
+            button12 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -369,11 +370,22 @@
             button11.UseVisualStyleBackColor = true;
             button11.Click += button_recompensa;
             // 
+            // button12
+            // 
+            button12.Location = new Point(350, 458);
+            button12.Name = "button12";
+            button12.Size = new Size(127, 29);
+            button12.TabIndex = 33;
+            button12.Text = "Guardar Partida";
+            button12.UseVisualStyleBackColor = true;
+            button12.Click += button_guardar;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 594);
+            Controls.Add(button12);
             Controls.Add(button11);
             Controls.Add(button10);
             Controls.Add(cantidaddinero);
@@ -451,5 +463,6 @@
         private Label cantidaddinero;
         private Button button10;
         private Button button11;
+        private Button button12;
     }
 }

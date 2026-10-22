@@ -24,12 +24,12 @@ namespace JuegoRPG_trabajo
 
         public void RecibirDanio(int cantidad)
         {
-            Vida = Math.Max(0, Vida - cantidad);   // nunca baja de 0
+            Vida = Math.Max(0, Vida - cantidad);  
         }
 
         public void Curar(int cantidad)
         {
-            Vida = Math.Min(VidaMaxima, Vida + cantidad);   // nunca pasa del máximo
+            Vida = Math.Min(VidaMaxima, Vida + cantidad);   
         }
     }
 
